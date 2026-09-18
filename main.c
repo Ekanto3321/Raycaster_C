@@ -53,7 +53,7 @@ void render2D()
 
     for (float a = 0; a < fov; a += angleincrement) // fov rendering
     {
-        float arg = rot_rad + (a - 45) * DEG2RAD;
+        float arg = rot_rad + (a - fov/2) * DEG2RAD;
         float x_dst = cos(arg);
         float y_dst = sin(arg);
         DrawLine(playerPos.x, playerPos.y, playerPos.x + checkCol(a, x_dst, y_dst, 1) * x_dst, playerPos.y + checkCol(a, x_dst, y_dst, 1) * y_dst, YELLOW);
@@ -85,7 +85,7 @@ void render3D()
         DrawRectangle(a * rectSize * rayPerDeg, (screenHeight / 2)  - (size / 2) * heightscalar, rectSize, size  * heightscalar, (Color){col, col, col, 255});
     }
 
-    DrawCircle(screenWidth / 2 - 3, screenHeight / 2 - 3, 6, RED);
+    DrawCircle(screenWidth / 2 - 2, screenHeight / 2 - 2, 4, RED);
 }
 
 float checkCol(int a, float x_dst, float y_dst, int target)
@@ -93,8 +93,8 @@ float checkCol(int a, float x_dst, float y_dst, int target)
     int x, y;
     float dist = 0;
     while (map[((int)(playerPos.y + dist * y_dst) / gridSize) % mapy][((int)(playerPos.x + dist * x_dst) / gridSize) % mapx] != target && dist <= 1000)
-    {
-        dist++;
+    {   
+            dist++;
     }
     return dist;
 }
@@ -248,8 +248,8 @@ void spawnBlockArcade(bool spawn)
     {
         for (int i = 0; i < enemy_cnt; i++)
         {
-            rndx = 1 + rand() % (mapx - 1);
-            rndy = 1 + rand() % (mapy - 1);
+            rndx = 1 + rand() % (mapx - 2);
+            rndy = 1 + rand() % (mapy - 2);
 
             map[rndy][rndx] = 1;
         }
