@@ -11,3 +11,4 @@
 - `X` to toggle into 3D
 - `WASD` for FPS movement
 - Mouse to rotate
+- `G` to enable arcade mode
