@@ -45,7 +45,6 @@ int main(void)
 
 void render2D()
 {   
-    EnableCursor();
     drawGrid();
     drawMap();
 
@@ -110,6 +109,7 @@ void controls()
     if (IsKeyPressed(KEY_X))
     {
         mode = !mode;
+        EnableCursor();
     }
 
     if (IsKeyDown(KEY_W))
@@ -129,24 +129,21 @@ void controls()
     if (IsKeyDown(KEY_D)&& !mode)
         rot += rot_speed;
 
-    if (IsKeyDown(KEY_R))
+    if (IsKeyDown(KEY_R) && !mode)
     {
         playerPos.x = screenWidth / 2;
         playerPos.y = screenHeight / 2;
     }
 
-    bool ms_t = 0;
-    if (IsKeyDown(KEY_F) && mode == 0)
-    {
-        ms_t = !ms_t;
-    }
-
-    if (ms_t)
+    if (IsKeyDown(KEY_F) && !mode)
     {
         playerPos.x = GetMouseX();
         playerPos.y = GetMouseY();
         rot += 20 * GetMouseWheelMove();
+    
     }
+
+    
 
     bool keystate;
 
