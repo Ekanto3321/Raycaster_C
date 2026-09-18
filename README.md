@@ -12,3 +12,7 @@
 - `WASD` for FPS movement
 - Mouse to rotate
 - `G` to enable arcade mode
+
+## Demo
+
+![alt text](output.gif)
